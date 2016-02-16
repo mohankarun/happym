@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  happy_level: 
+  =: MyString
+  recorded: 2016-02-13
+
+two:
+  happy_level: 
+  =: MyString
+  recorded: 2016-02-13

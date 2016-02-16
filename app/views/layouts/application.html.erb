@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Happyometer</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+      <%= link_to "#{image_tag('/images/happy-face.png', :width => 40, :height => 40,:style=>"display:inline-block;"  )}Happy o' Meter".html_safe, log_in_path, :class=> 'navbar-brand', :method => "get"%>
+      
+     
+    </div>
+    <div class="navbar-text navbar-right">
+          <% if current_user %>
+          <div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <%= current_user.first_name  %> <%=current_user.last_name%>
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li> <%= link_to "<span class=\"glyphicon glyphicon-home\" aria-hidden=\"true\"></span> Home ".html_safe, log_in_path,  :method => "get"%></li>
+    <li><%= link_to "<span class=\"glyphicon glyphicon-edit\"></span> Change Password".html_safe,change_password_path,:method=>"get" %></li>
+    <li><%=link_to "<span class=\"glyphicon glyphicon-transfer\"></span> Change Team".html_safe,change_team_path,:method=>"get" %></li>
+    <li><%= link_to "<span class=\"glyphicon glyphicon-log-out\"></span> Log out".html_safe, log_out_path, :method => "get"%></li>
+  </ul>
+</div>
+
+  <% else %>
+
+    <%= button_to "Sign up", sign_up_path , :class=> 'btn btn-default ', :method => "get"%>
+  <% end %>
+     </div> 
+
+  </div>
+</nav>
+
+<%= render 'layouts/flash_messages' %>
+ <div class="container-fluid">
+<%= yield %>
+</div>
+
+<script>
+$('#slider').slider({
+  tooltip: 'always'
+});
+</script>
+
+</body>
+</html>

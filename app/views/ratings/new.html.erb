@@ -1,0 +1,86 @@
+
+<h3>Hello  <%= current_user.first_name %> <%= current_user.last_name %>,</h3>
+<p class="text-right">
+<% if  !current_user.team.nil? %>
+<b>Team :</b> <%=current_user.team.name%> &nbsp;&nbsp;
+<% end%>
+</p>
+<hr>
+<br>
+<h5>
+Welcome to happy-o-meter portal. Please update your current happines level(on the below slider .<b>eg:</b> if you are feeling very stressfull you would give a very low number(<40 may be?) <br><br>
+Its simple record to update your stress-level of the day. 
+</h5>
+<br>
+<p><i>Note : The rating is a per-day basis and a Record will automatically  intialized with default '50' for today , once you login. You can change it whenever you feel like .</i> </p>
+<br>
+
+<br>
+
+<br>
+<%= form_for(@rating) do |f| %>
+  <% if @rating.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(@rating.errors.count, "error") %> prohibited this team from being saved:</h2>
+
+      <ul>
+      <% @team.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field custom-slider">
+    <%= f.text_field :happy_level ,:id=>"slider",  'data-slider-min'=>'0', 'data-slider-max' => '100' ,'data-slider-step'=> "0.5" , 'data-slider-value' => @rating.happy_level%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Record/Update" , :class=>'btn btn-primary' %>
+  </div>
+<% end %>
+
+
+<script>
+var chart_data = [
+<%
+@current_user.ratings.each_with_index do |rating,index|%>
+
+ [<%=rating.recorded.strftime(" %d-%m-%y")%>, <%=rating.happy_level%>] 
+  <% if index != @current_user.ratings.size - 1 %>
+   ,
+     <%end %>
+     <%end %>
+    ];
+   </script> 
+<div id="chart1" style="margin-top:20px; margin-left:20px; width:600px; height:300px;"></div>
+<script type="text/javascript">
+$(document).ready(function () {
+  
+  plot1 = $.jqplot("chart1", [chart_data], {
+     title:'Your Stress graph',
+     showTickMarks:false,
+    axes:{
+        xaxis:{
+            renderer:$.jqplot.DateAxisRenderer,
+            tickOptions: {
+          showGridline: false,
+          showMark: false,
+          textColor: '#ffffff',
+          fontSize: 'larger'
+        },
+        }
+    },
+    tickOptions: {
+    formatString: '%d-%m-%y'
+  },
+    seriesDefaults:{
+        linePattern: 'dashed',
+        showMarker: true,
+        shadow: false
+    }
+  });
+});
+  </script>
+
+
+

@@ -1,0 +1,45 @@
+// Place all the styles related to the ratings controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.custom-slider{
+	width: 100%;
+	
+}
+
+.custom-slider .slider-horizontal
+ {
+
+	width:70% !important;
+}
+
+.custom-slider .slider.slider-horizontal .slider-track
+ {
+ height:30px;
+ 
+}
+
+.tooltip-arrow
+{
+	    margin-left: -6px !important;
+    border-width: 6px 7px 0 !important;
+}
+
+.tooltip-inner{
+	    height: 30px;
+    font-size: 15px;
+}
+.custom-slider .slider.slider-horizontal .slider-selection
+ {
+ background:lightgreen;
+}
+
+.custom-slider .slider.slider-horizontal .slider-handle
+ {
+ background:none !important;
+}
+
+.actions{
+	margin-top:40px;
+	margin-left:20px;
+	display:block;
+}

@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Change Team</h2>
+                </div>
+                <div class="panel-body">
+                    <%= form_for @user, :url => { :action => :change_team} do |f| %>
+                    <% if @user.errors.any? %>
+                    <div class="error_messages">
+                        <ul>
+                            <% for message in @user.errors.full_messages %>
+                            <li class="alert alert-danger"><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                    <% end %>
+
+                    <fieldset>
+                        <p>
+                        <%= f.select(:team_id) do %>
+                        <% @teams.each do |team| %>
+                        <%= content_tag(:option, team.name, value: team.id) %>
+                        <% end %>
+                        <% end %>
+                    </p>
+                    
+                        <p class="button"><%= f.submit "Change team",:class=> 'btn btn-lg btn-success btn-block' %></p>
+                    </fieldset>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
