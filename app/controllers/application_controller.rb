@@ -13,6 +13,13 @@ class ApplicationController < ActionController::Base
   end
   end
 
+  def admin_previleges
+  if current_user.role !='Admin'
+    flash[:error] = 'No Permission'
+    redirect_to :root
+  end
+  end
+
 private
 
 def current_user

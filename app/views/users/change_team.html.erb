@@ -18,16 +18,21 @@
                     <% end %>
 
                     <fieldset>
+                       <% if @teams.size>0 %>
                         <p>
                         <%= f.select(:team_id) do %>
                         <% @teams.each do |team| %>
                         <%= content_tag(:option, team.name, value: team.id) %>
                         <% end %>
                         <% end %>
-                    </p>
+                        </p>
                     
                         <p class="button"><%= f.submit "Change team",:class=> 'btn btn-lg btn-success btn-block' %></p>
                     </fieldset>
+                        <% else%>
+                       <li class="alert alert-info"> No Teams Available !  </li>
+                        <% end %>
+                    
                     <% end %>
                 </div>
             </div>

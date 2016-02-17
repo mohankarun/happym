@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160213080936) do
+ActiveRecord::Schema.define(version: 20160217175357) do
 
   create_table "ratings", force: :cascade do |t|
     t.decimal  "happy_level"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160213080936) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "team_id"
+    t.string   "role"
   end
 
   add_index "users", ["team_id"], name: "index_users_on_team_id"

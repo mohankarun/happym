@@ -46,7 +46,7 @@ end
       @user = User.find(current_user.id)
     end
    def pwd_params
-      params.require(:user).permit(:password,:password_confirmation)
+      params.require(:user).permit(:password,:password_confirmation,:role)
     end
     def user_params
       params.require(:user).permit(:username,:first_name,:last_name,:email,:password,:password_confirmation)

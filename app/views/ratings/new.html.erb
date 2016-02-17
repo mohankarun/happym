@@ -1,10 +1,6 @@
 
 <h3>Hello  <%= current_user.first_name %> <%= current_user.last_name %>,</h3>
-<p class="text-right">
-<% if  !current_user.team.nil? %>
-<b>Team :</b> <%=current_user.team.name%> &nbsp;&nbsp;
-<% end%>
-</p>
+
 <hr>
 <br>
 <h5>
@@ -15,9 +11,7 @@ Its simple record to update your stress-level of the day.
 <p><i>Note : The rating is a per-day basis and a Record will automatically  intialized with default '50' for today , once you login. You can change it whenever you feel like .</i> </p>
 <br>
 
-<br>
 
-<br>
 <%= form_for(@rating) do |f| %>
   <% if @rating.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
@@ -30,7 +24,12 @@ Its simple record to update your stress-level of the day.
       </ul>
     </div>
   <% end %>
-
+<span class="text-right">
+<% if  !current_user.team.nil? %>
+<b>Team :</b> <%=current_user.team.name%> &nbsp;&nbsp;
+<% end%>
+<%=Time.now.strftime("%a, %d %b %Y ")%>
+</span>
   <div class="field custom-slider">
     <%= f.text_field :happy_level ,:id=>"slider",  'data-slider-min'=>'0', 'data-slider-max' => '100' ,'data-slider-step'=> "0.5" , 'data-slider-value' => @rating.happy_level%>
   </div>
